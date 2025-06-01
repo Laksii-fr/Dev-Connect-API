@@ -1,10 +1,7 @@
 # Dev-Connect-API
 
-Here’s a `README.md` file for your **DevConnect Backend** project that covers setup, structure, usage, and key API information. You can customize the details as needed:
-
 ---
 
-```markdown
 # DevConnect Backend
 
 DevConnect is a backend service built using **Node.js**, **Express**, and **MongoDB**. It provides APIs for user authentication, profile management, and blogging functionality for the DevConnect platform — a place for developers to connect, share, and grow.
@@ -19,7 +16,6 @@ DevConnect is a backend service built using **Node.js**, **Express**, and **Mong
 - **RESTful APIs**
 - **Dotenv** for environment config
 
----
 
 ## 📁 Folder Structure
 
@@ -38,7 +34,6 @@ DevConnect is a backend service built using **Node.js**, **Express**, and **Mong
 ````
 
 ---
-
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
@@ -139,9 +134,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 GitHub: [@laksii-fr](https://github.com/laksii-fr)
 
-```
-
----
-
 Let me know if you want me to generate an auto-linked table of contents, or tailor it for deployment (e.g., with `Docker`, `Vercel`, or `Render`).
-```
+
