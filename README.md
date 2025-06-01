@@ -39,8 +39,8 @@ DevConnect is a backend service built using **Node.js**, **Express**, and **Mong
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/devconnect-backend.git
-cd devconnect-backend
+git clone https://github.com/laksii-fr/Dev-Connect-API.git
+cd Dev-Connect-API
 ````
 
 ### 2. Install Dependencies
