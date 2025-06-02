@@ -109,6 +109,7 @@ async function SaveBlog(blogData) {
     description,
     content,
     image_url,
+    published: false,
     createdAt: new Date(),
     updatedAt: new Date()
   };

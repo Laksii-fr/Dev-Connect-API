@@ -19,6 +19,8 @@ const profileRoutes = require('./routes/profile');
 app.use('/api/profile', profileRoutes);
 const blogRoutes = require('./routes/blogs');
 app.use('/api/blogs', blogRoutes);
+const smartBlogRoutes = require('./routes/smart_blog');
+app.use('/api/smart-blog', smartBlogRoutes);
 console.log('3) Routes initialized');
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`4) Server running on port ${PORT}`));

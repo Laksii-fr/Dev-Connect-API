@@ -1,7 +1,7 @@
 const { User } = require('../models/auth_models');
 const { SaveUser } = require('../utils/mongo_utils');
 const { checkUserCredentials, get_subid_by_username  } = require('../utils/mongo_utils');
-const { generate_subId } = require('../helpers/general_helper');
+const { generate_subId } = require('../helpers/auth_helper');
 const { generateToken } = require('../utils/jwt_utils'); // Assuming you have a token helper for generating tokens
 
 
