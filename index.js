@@ -21,6 +21,8 @@ const blogRoutes = require('./routes/blogs');
 app.use('/api/blogs', blogRoutes);
 const smartBlogRoutes = require('./routes/smart_blog');
 app.use('/api/smart-blog', smartBlogRoutes);
+const blogOperationsRoutes = require('./routes/blog_operations');
+app.use('/api/blog-operations', blogOperationsRoutes);
 console.log('3) Routes initialized');
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`4) Server running on port ${PORT}`));

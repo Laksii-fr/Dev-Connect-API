@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -22,6 +22,4 @@ async function enhancer(blogdata) {
   return completion.choices[0].message.content;
 }
 
-export default enhancer;
-
-
+export { enhancer };

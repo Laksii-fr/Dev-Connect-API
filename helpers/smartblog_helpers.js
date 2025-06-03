@@ -1,13 +1,13 @@
-import enhancer from '../utils/openai_utils.js';
+const { enhancer } = require('../utils/openai_utils.js');
 
 async function enhance_blog(blogData) {
     try {
         const enhancedContent = await enhancer(blogData);
-        return enhancedContent
+        return enhancedContent;
     } catch (error) {
         console.error('Error enhancing blog:', error.message);
-        throw error; // Propagate the error to be handled by the calling function
+        throw error;
     }
 }
 
-export { enhance_blog };
+module.exports = { enhance_blog };

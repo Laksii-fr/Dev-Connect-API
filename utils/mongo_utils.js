@@ -1,6 +1,7 @@
 const { User } = require('../models/auth_models');
 const { Profile } = require('../models/profile_models');
-const { Blog } = require('../models/blog_models');
+const { Blog, BlogLike, BlogComment } = require('../models/blog_models');
+
 const bcrypt = require('bcrypt');
 
 const SaveUser = async ({ subId, username, password }) => {
@@ -95,7 +96,7 @@ async function UpdateUserProfile(subId, updateFields) {
 // Blog related Funcitons
 
 async function SaveBlog(blogData) {
-  const { blogId, subId, title, description, content, image_url } = blogData;
+  const { blogId, subId, title, genre, description, content, image_url } = blogData;
 
   const existing = await Blog.findOne({ blogId });
   if (existing) {
@@ -106,6 +107,7 @@ async function SaveBlog(blogData) {
     subId,
     blogId,
     title,
+    genre,
     description,
     content,
     image_url,
@@ -160,6 +162,42 @@ async function DeleteBlog(subId, blogId) {
   }
 }
 
+async function add_like_post(blogId, subId) {
+  try {
+    const alreadyLiked = await BlogLike.findOne({ blogId, subId });
+    if (!alreadyLiked) {
+      await BlogLike.create({ blogId, subId });
+      await Blog.findOneAndUpdate({ blogId }, { $inc: { likesCount: 1 } });
+    }
+  } catch (error) {
+    throw new Error(`Error adding like to blog post: ${error.message}`);
+  }
+}
+
+async function unlike_blog(blogId, subId) {
+  try {
+    const deleted = await BlogLike.deleteOne({ blogId, subId });
+    if (deleted.deletedCount > 0) {
+      await Blog.findOneAndUpdate({ blogId }, { $inc: { likesCount: -1 } });
+    }
+  }
+  catch (error) {
+    throw new Error(`Error unliking blog post: ${error.message}`);
+  }
+}
+
+async function addComment(blogId, subId, comment) {
+  try {
+    if (!comment || typeof comment !== 'string') {
+      throw new Error('Comment must be a non-empty string');
+    }
+    const result = await BlogComment.create({ blogId, subId, comment, commentId });
+    return result;
+  } catch (error) {
+    throw new Error(`Error adding comment to blog post: ${error.message}`);
+  }
+}
+
 module.exports = {
   SaveUserProfile,
   GetUserProfile,
@@ -171,5 +209,8 @@ module.exports = {
   SaveBlog: SaveBlog,
   getBlogs : GetBlogs,
   getBlogById: GetBlogById,
-  deleteBlog: DeleteBlog
+  deleteBlog: DeleteBlog,
+  like_blog: add_like_post,
+  unlike_blog: unlike_blog,
+  addComment: addComment
 };

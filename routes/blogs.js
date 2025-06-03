@@ -8,17 +8,21 @@ const router = express.Router();
 // Creating Blog by user
 
 router.post("/create-blog", authMiddleware, async (req, res) => {
-  const { title, description, content, image_url } = req.body;
+  const { title,genre, description, content, image_url } = req.body;
   const subId = req.user.subId; // extracted from token
 
   if ((!title || !content || !description) && !image_url) {
     return res.status(400).json({ message: 'Title and content are required' });
+  }
+  if (genre && !Array.isArray(genre)) {
+    return res.status(400).json({ message: 'Genre must be an array' });
   }
 
   try {
     const data = {
       subId,
       title,
+      genre: genre || [], // Default to empty array if genre is not provided
       description,
       content
     };
